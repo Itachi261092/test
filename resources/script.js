@@ -2,13 +2,13 @@
 $( document ).ready(function() {
     $("#prizebtn").click(
         function(){
-            sendAjaxForm('prize-form', 'prize.php');
+            sendAjaxForm('prize-form', 'formtext', 'prize.php');
             return false;
         }
     );
 });
 
-function sendAjaxForm(ajax_form, url) {
+function sendAjaxForm(ajax_form, formtext, url) {
     $.ajax({
         url:     url,
         type:     "POST",
@@ -16,10 +16,11 @@ function sendAjaxForm(ajax_form, url) {
         data: $("#"+ajax_form).serialize(),  // Сеарилизуем объект
         success: function(response) { //Данные отправлены успешно
             result = $.parseJSON(response);
-            $('#ajax_form').append('<div class="alert alert-warning" role="alert">'+result+'</div>');
+            console.log(result);
+            $('#'+formtext).html('<div class="alert alert-success" role="alert">'+result+'</div>');
         },
         error: function(response) { // Данные не отправлены
-            $('#result_form').append('Ошибка. Приз не получен.');
+            $('#'+formtext).html('<div class="alert alert-warning" role="alert">Ошибка. Приз не получен.</div>');
         }
     });
 }

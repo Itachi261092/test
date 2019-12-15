@@ -76,6 +76,7 @@ if (!isset($_SESSION['user_hash'])) {
 }
 else{?>
     <form id="prize-form" class="form-signin" method="POST">
+        <div id="formtext"></div>
         <input type="hidden" name="getprize" value="gp">
         <button id="prizebtn" class="btn btn-lg btn-primary btn-block" type="submit">Get a prize</button>
     </form>
